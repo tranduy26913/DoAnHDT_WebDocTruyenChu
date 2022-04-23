@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/DoAnHDT_WebDocTruyenChu/static/css/main.4570b60d.css",
-    "main.js": "/DoAnHDT_WebDocTruyenChu/static/js/main.8f087695.js",
+    "main.css": "/DoAnHDT_WebDocTruyenChu/static/css/main.75d06e6a.css",
+    "main.js": "/DoAnHDT_WebDocTruyenChu/static/js/main.3ead2a5a.js",
     "static/media/logo.png": "/DoAnHDT_WebDocTruyenChu/static/media/logo.41dc980b52dd84191800.png",
     "static/media/avt.png": "/DoAnHDT_WebDocTruyenChu/static/media/avt.e6a4f4fd837bf1c5555b.png",
     "index.html": "/DoAnHDT_WebDocTruyenChu/index.html",
-    "main.4570b60d.css.map": "/DoAnHDT_WebDocTruyenChu/static/css/main.4570b60d.css.map",
-    "main.8f087695.js.map": "/DoAnHDT_WebDocTruyenChu/static/js/main.8f087695.js.map"
+    "main.75d06e6a.css.map": "/DoAnHDT_WebDocTruyenChu/static/css/main.75d06e6a.css.map",
+    "main.3ead2a5a.js.map": "/DoAnHDT_WebDocTruyenChu/static/js/main.3ead2a5a.js.map"
   },
   "entrypoints": [
-    "static/css/main.4570b60d.css",
-    "static/js/main.8f087695.js"
+    "static/css/main.75d06e6a.css",
+    "static/js/main.3ead2a5a.js"
   ]
 }
