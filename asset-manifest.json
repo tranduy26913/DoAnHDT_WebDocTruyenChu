@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/DoAnHDT_WebDocTruyenChu/static/css/main.4570b60d.css",
-    "main.js": "/DoAnHDT_WebDocTruyenChu/static/js/main.91d62abf.js",
+    "main.js": "/DoAnHDT_WebDocTruyenChu/static/js/main.11ee1749.js",
     "static/media/logo.png": "/DoAnHDT_WebDocTruyenChu/static/media/logo.41dc980b52dd84191800.png",
     "static/media/avt.png": "/DoAnHDT_WebDocTruyenChu/static/media/avt.e6a4f4fd837bf1c5555b.png",
     "index.html": "/DoAnHDT_WebDocTruyenChu/index.html",
     "main.4570b60d.css.map": "/DoAnHDT_WebDocTruyenChu/static/css/main.4570b60d.css.map",
-    "main.91d62abf.js.map": "/DoAnHDT_WebDocTruyenChu/static/js/main.91d62abf.js.map"
+    "main.11ee1749.js.map": "/DoAnHDT_WebDocTruyenChu/static/js/main.11ee1749.js.map"
   },
   "entrypoints": [
     "static/css/main.4570b60d.css",
-    "static/js/main.91d62abf.js"
+    "static/js/main.11ee1749.js"
   ]
 }
