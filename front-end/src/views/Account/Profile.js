@@ -9,8 +9,8 @@ import { storage } from '../../firebaseConfig';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { toast } from 'react-toastify';
 import { setLoading } from '../../redux/messageSlice'
-import Loading from '../../components/Loading';
-import LoadingData from '../../components/LoadingData';
+import Loading from '../../components/Loading/Loading';
+import LoadingData from '../../components/LoadingData/LoadingData';
 
 function Profile({userInfo,changeUserInfo}) {
   const user = useSelector(state => state.auth.login?.user);
@@ -56,7 +56,9 @@ function Profile({userInfo,changeUserInfo}) {
       const update = await apiMain.updateUserInfo(user, dispatch, loginSuccess, data)
       dispatch(setLoading(false))
       toast.success("Cập nhật thông tin thành công", { autoClose: 1000, hideProgressBar: true, pauseOnHover: false })
-      const newUser ={...user, image:update.image,tenhienthi:update.tenhienthi}
+      
+      const newUser ={...user, image:update?.userInfo?.image,tenhienthi:update?.userInfo?.tenhienthi}
+      console.log(newUser)
       dispatch(loginSuccess(newUser))
       changeUserInfo(update.userInfo)
     } catch (error) {
@@ -109,15 +111,13 @@ function Profile({userInfo,changeUserInfo}) {
       {
         loadingUser ? <LoadingData />
           :
-          <div className="profile__wrap d-flex">
-            <div className="col-5 profile__avt">
-
+          <div className="profile__wrap row">
+            <div className="col-5 col-md-12 col-sm-12 profile__avt">
               <img src={preview} alt="" />
               <input type={"file"} accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" name={"avatar"} onChange={onChangeImage} />
-              <button onClick={upload}>Upload</button>
+              <button className='btn-primary' onClick={upload}>Upload</button>
             </div>
-            <div className="col-7 ">
-              <div className="profile__main">
+            <div className="col-7 col-md-12 col-sm-12 profile__main">
                 <form>
                   <div className="group-info">
                     <label htmlFor="" style={labelStyle}>Tên hiển thị</label>
@@ -137,7 +137,6 @@ function Profile({userInfo,changeUserInfo}) {
                 </form>
 
               </div>
-            </div>
           </div>
       }</>
 

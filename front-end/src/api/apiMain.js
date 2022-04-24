@@ -1,5 +1,3 @@
-import { logoutSuccess } from "../redux/authSlice";
-import ChangePassword from "../views/Account/ChangePassword";
 import { axiosClient, axiosInstance } from "./axiosClient";
 import getData from './getData'
 const apiMain = {
@@ -27,11 +25,11 @@ const apiMain = {
         return (await axi.get(url, { headers: { Authorization: `Bearer ${user.accessToken}` } })).data;
     },
     checkUsername:async (params) => {
-        const res = await axiosClient.post('/auth/checkusername', params)
+        const res = await axiosClient.get('/auth/checkusername', {params})
         return getData(res);
     },
     checkEmail:async (params) => {
-        const res = await axiosClient.post('/auth/checkemail', params)
+        const res = await axiosClient.get('/auth/checkemail', {params:params})
         return getData(res);
     },
 
@@ -47,10 +45,9 @@ const apiMain = {
         return getData(res);
 
     },
-    getStorysByUserId: async (params) => {
+    getStorysByUsername: async (params) => {
         const res = await axiosClient.get(`/novels/created`, { params: params });
         return getData(res);
-
     },
     getStory: async (params) => {
         const res = await axiosClient.get(`/novels/novel/${params.url}`);
@@ -68,12 +65,10 @@ const apiMain = {
     },
     getChapterByNumber: async (tentruyen, chapnum) => {
         return getData(await axiosClient.get(`/novels/novel/${tentruyen}/chuong/${chapnum}`));
-
     },
-    setReading: async (params, user, dispatch, stateSuccess) => {
-        const url = `/novels/novel/reading`
+    getChapterByNumberAndSetReading: async (tentruyen, chapnum, user, dispatch, stateSuccess) => {
         let axi = axiosInstance(user, dispatch, stateSuccess)
-        return (await axi.post(url, params, { headers: { Authorization: `Bearer ${user.accessToken}` } })).data;
+        return getData(await axi.get(`/novels/novel/${tentruyen}/chuong/${chapnum}`));
     },
     createChapter: async (params, user, dispatch, stateSuccess) => {
         const url = `/novels/novel/chuong/create`
@@ -96,20 +91,32 @@ const apiMain = {
         let axi = axiosInstance(user, dispatch, stateSuccess)
         return getData(await axi.get(url, { headers: { Authorization: `Bearer ${user.accessToken}` } }));
     },
-    createNovel: async (params, user, dispatch, stateSuccess) => {
+    getReadingDefault: async (params) => {
+        const url = `/novels/readingsdefault`
+        return getData(await axiosClient.get(url, {params} ));
+    },
+    getSaveds: async (user, dispatch, stateSuccess) => {
+        const url = `/saved/`
+        let axi = axiosInstance(user, dispatch, stateSuccess)
+        return getData(await axi.get(url, { headers: { Authorization: `Bearer ${user.accessToken}` } }));
+    },
+    createStory: async (params, user, dispatch, stateSuccess) => {
         const url = `/novels/novel/create`
         let axi = axiosInstance(user, dispatch, stateSuccess)
         return (await axi.post(url, params)).data;
     },
-    updateNovel: async (params, user, dispatch, stateSuccess) => {
+    updateStory: async (params, user, dispatch, stateSuccess) => {
         const url = `/novels/novel/edit`
         let axi = axiosInstance(user, dispatch, stateSuccess)
         return getData(await axi.put(url, params));
     },
-    deleteNovel: async (params, user, dispatch, stateSuccess) => {
+    deleteStory: async (params, user, dispatch, stateSuccess) => {
         const url = `/novels/novel`
         let axi = axiosInstance(user, dispatch, stateSuccess)
         return getData(await axi.delete(url, {params}));
+    },
+    getChapterNewUpdate: async (param) => {
+        return getData(await axiosClient.get(`/novels/novel/newupdate`,{param}));
     },
     ///Comment
 
@@ -177,6 +184,20 @@ const apiMain = {
     deleteAccount: async (user, dispatch, stateSuccess, params) => {
         const axi = await axiosInstance(user, dispatch, stateSuccess)
         return getData(await axi.delete(`/user?id=${params.id}`, { headers: { Authorization: `Bearer ${user.accessToken}` } }));
-    }
+    },
+
+    ///saved
+    checkSaved: async (user, dispatch, stateSuccess, params) => {
+        const axi = await axiosInstance(user, dispatch, stateSuccess)
+        return getData(await axi.get(`/saved/${params.url}`, { headers: { Authorization: `Bearer ${user.accessToken}` } }));
+    },
+    savedStory: async (user, dispatch, stateSuccess, params) => {
+        const axi = await axiosInstance(user, dispatch, stateSuccess)
+        return getData(await axi.post(`/saved/`, params,{ headers: { Authorization: `Bearer ${user.accessToken}` } }));
+    },
+    unsavedStory: async (user, dispatch, stateSuccess, params) => {
+        const axi = await axiosInstance(user, dispatch, stateSuccess)
+        return getData(await axi.delete(`/saved/${params.url}`,{ headers: { Authorization: `Bearer ${user.accessToken}` } }));
+    },
 }
 export default apiMain;

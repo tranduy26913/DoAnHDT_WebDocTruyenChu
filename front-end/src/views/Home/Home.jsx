@@ -1,6 +1,7 @@
-import React from 'react'
-import Layout from '../../components/Layout'
-import ListStory from '../ListStory/ListStory'
+import Layout from '../../components/Layout/Layout'
+import ListStory from './ListStory/ListStory'
+import NewestChapter from './NewestChapter/NewestChapter'
+import StoryTopRate from './StoryTopRate/StoryTopRate'
 import './Home.scss'
 
 function Home() {
@@ -8,8 +9,11 @@ function Home() {
     <>
     <Layout>
       <div className="main-content">
-             <ListStory/>
-          </div>
+             <ListStory key={"list"}/>
+             <NewestChapter key={"list2"}/>
+            <StoryTopRate key={"list3"}/>
+      </div>
+      
     </Layout>
     
            
