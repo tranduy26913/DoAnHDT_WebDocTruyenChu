@@ -2,7 +2,7 @@
 function Layout(props) {//Layout chung cho toàn web
   return (
     <>
-    <span 
+      <span 
       className='imgHero'>
         <div></div>
       </span>
